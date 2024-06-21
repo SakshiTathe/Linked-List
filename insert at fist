@@ -1,0 +1,38 @@
+public class Linkedlist {
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head,temp; 
+    public Linkedlist() {
+        this.head = null;
+    }
+    public void insert_first(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            NEW.next=head;
+            head=NEW;
+        }
+    }
+    public void printlist(){
+        temp=head;
+        while(temp.next!=null){
+            System.out.println(temp+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Linked list = new Linked();
+        list.insert_first(30);
+        list.insert_first(40);
+        list.printList();
+    } 
+}
