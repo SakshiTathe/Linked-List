@@ -7,7 +7,7 @@ public class Linkedlist {
             this.next=null;
         }
     }
-    private Node head,temp; 
+    private Node head; 
     public Linkedlist() {
         this.head = null;
     }
@@ -22,9 +22,9 @@ public class Linkedlist {
         }
     }
     public void printlist(){
-        temp=head;
-        while(temp.next!=null){
-            System.out.println(temp+"->");
+        Node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data+"->");
             temp=temp.next;
         }
         System.out.println("null");
