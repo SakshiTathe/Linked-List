@@ -1,0 +1,75 @@
+public class Linkedlist2{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Linkedlist2() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    } 
+    public void reverseList(){
+        if(head==null || head.next==null){
+            return;
+        }
+        Node prev=head,current=head.next;
+        while (current!=null) {
+            Node nextnode=current.next;
+            current.next=prev;
+            prev=current;
+            current=nextnode;
+        }
+        head.next=null;
+        head=prev;
+    } 
+    public void addOne(){
+        reverseList();
+        Node temp=head;
+        int sum=0,carry=1;
+        while(temp!=null){
+            sum=temp.data+carry;
+            carry=sum/10;
+            temp.data=sum%10;
+            if (temp.next == null && carry > 0) {
+                temp.next = new Node(carry);
+                carry = 0;
+            }
+            temp=temp.next;
+        }
+        reverseList();
+    }
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Linkedlist2 list = new Linkedlist2();
+        list.insert_end(9);
+        list.insert_end(9);
+        list.insert_end(9);
+        list.insert_end(9); 
+        list.printlist();
+        list.addOne();
+        list.printlist();
+    } 
+}
