@@ -1,0 +1,90 @@
+
+public class Linkedlist2{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Linkedlist2() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    } 
+    public void reverseList() {
+        if (head == null || head.next == null) {
+            return;
+        }
+        Node prev = head, current = head;
+        while (current != null) {
+            Node nextnode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextnode;
+        }
+        head.next=null;
+        head = prev;
+    }
+    public void addNums(Linkedlist2 lista,Linkedlist2 listb,Linkedlist2 addnumlist){
+        lista.reverseList();
+        listb.reverseList();
+        Node tempa=lista.head,tempb=listb.head;
+        int sum=0,carry=0;
+
+        while(tempa!=null || tempb!=null){
+            int a = (tempa != null) ? tempa.data : 0;
+            int b = (tempb != null) ? tempb.data : 0;
+
+            sum= a+b+carry;
+            carry=sum/10;
+            addnumlist.insert_end(sum%10);
+
+            if (tempa!= null) tempa=tempa.next;
+            if (tempb!= null) tempb=tempb.next;
+        }
+        if (carry > 0) {
+            addnumlist.insert_end(carry);
+        }
+        addnumlist.reverseList();
+    }
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Linkedlist2 list1 = new Linkedlist2();
+        Linkedlist2 list2 = new Linkedlist2();
+        Linkedlist2 addnumlist = new Linkedlist2();
+        list1.insert_end(9);
+        list1.insert_end(9);
+        list1.insert_end(9);
+        list1.insert_end(9);
+
+        list2.insert_end(6);
+        list2.insert_end(4);
+        list2.insert_end(5);
+
+        list1.printlist();
+        list2.printlist();
+        list1.addNums(list1,list1,addnumlist);
+        addnumlist.printlist();
+    } 
+} 
