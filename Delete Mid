@@ -1,0 +1,71 @@
+
+public class Linkedlist2{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Linkedlist2() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    } 
+     
+    public int traverse(){
+        Node temp=head;
+        int count=0;
+        while(temp!=null){
+            count=count+1;
+            temp=temp.next;
+        }
+        return count;
+    }
+    public void deleteMid(){
+        int count=traverse();
+        count=count/2;
+        Node temp=head,prev=temp;
+        for(int i=0;i<count;i++){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=temp.next;
+    }
+
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Linkedlist2 list = new Linkedlist2(); 
+        list.insert_end(4);
+        list.insert_end(9);
+        list.insert_end(7);
+        list.insert_end(19);
+        list.insert_end(61);
+        list.insert_end(44);
+        list.insert_end(5);
+
+        list.printlist(); 
+        list.deleteMid();
+        list.printlist(); 
+    } 
+} 
