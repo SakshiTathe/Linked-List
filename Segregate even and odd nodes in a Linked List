@@ -1,0 +1,68 @@
+
+public class Singly{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Singly() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    }  
+    public void evenOddnums(){
+        Node temp=head;
+        Singly even = new Singly(); 
+        Singly odd = new Singly(); 
+        while(temp!=null){ 
+            if(temp.data %2==0){
+                even.insert_end(temp.data);
+            }
+            else{
+                odd.insert_end(temp.data);
+            }
+            temp=temp.next;
+        }
+        System.out.print("Even index List:");
+        even.printlist();
+        System.out.print("Odd index List:");
+        odd.printlist();
+
+    }
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Singly list = new Singly();
+        list.insert_end(64);
+        list.insert_end(159);
+        list.insert_end(47);
+        list.insert_end(39);
+        list.insert_end(21);
+        list.insert_end(44);
+        list.insert_end(5);
+
+        list.printlist(); 
+        list.evenOddnums(); 
+    } 
+} 
