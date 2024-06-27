@@ -1,0 +1,99 @@
+public class Circular{ 
+    class Node {
+        int data;
+        Node next;
+        Node(int d) {
+            this.data = d;
+            this.next = null;
+        }}  
+    private Node head; 
+    public Circular() {
+        this.head = null;
+    }
+    public void insert_first(int data) {
+        Node NEW=new Node(data);
+        if(head==null){ 
+            head=NEW;
+            NEW.next=head;
+        }
+        else { 
+            Node temp=head;
+            while (temp.next!=head) {
+                temp=temp.next;
+            }
+            NEW.next=head;
+            head=NEW;
+            temp.next=NEW;
+    } 
+    }
+
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){ 
+            head=NEW;
+            NEW.next=head;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=head) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+            NEW.next=head;
+        }
+    }
+    public void delete_end(){
+        Node temp=head,prev=null;
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        else{
+            while (temp.next!=head) {
+                prev=temp;
+                temp=temp.next;
+            }
+            prev.next=head;
+        }
+    }
+    public void delete_first(){
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        if (head.next == head) {
+            head = null;  // Only one node in the list
+        } 
+        else {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            head = head.next;
+            temp.next = head;
+        }
+    }
+    private void printList() {
+        Node current = head;
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        do {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        } while (current != head);
+        System.out.println("(head)");
+    }
+
+    public static void main(String[] args) {
+        Circular list = new Circular();
+        list.insert_first(3);
+        list.insert_first(4); 
+        list.insert_end(8); 
+        list.insert_first(7); 
+        list.insert_end(10); 
+        list.printList();
+        list.delete_end();
+        list.delete_first();
+        list.printList();
+  }
+} 
