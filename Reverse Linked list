@@ -1,0 +1,72 @@
+
+public class Singly{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Singly() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    } 
+     
+    public int traverse(){
+        Node temp=head;
+        int count=0;
+        while(temp!=null){
+            count=count+1;
+            temp=temp.next;
+        }
+        return count;
+    } 
+    public void reverseList() {
+        if (head == null || head.next == null) {
+            return;
+        }
+        Node prev = head, current = head;
+        while (current != null) {
+            Node nextnode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextnode;
+        }
+        head.next=null;
+        head = prev;
+    }
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) { 
+        Singly list1 = new Singly(); 
+        list1.insert_end(1);
+        list1.insert_end(9);
+        list1.insert_end(7);
+        list1.insert_end(5);
+        list1.insert_end(35);
+        list1.insert_end(56);
+        list1.printlist();
+        list1.reverseList();
+        list1.printlist();
+    } 
+} 
