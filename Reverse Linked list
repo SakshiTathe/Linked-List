@@ -25,16 +25,6 @@ public class Singly{
             temp.next=NEW;
         }
     } 
-     
-    public int traverse(){
-        Node temp=head;
-        int count=0;
-        while(temp!=null){
-            count=count+1;
-            temp=temp.next;
-        }
-        return count;
-    } 
     public void reverseList() {
         if (head == null || head.next == null) {
             return;
