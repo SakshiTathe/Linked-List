@@ -1,0 +1,57 @@
+
+public class Singly{
+    class Node{
+        int data;
+        Node next;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+        }
+    }
+    private Node head; 
+    public Singly() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    }  
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public void remove_duplicate(){
+        Node temp=head;
+        while(temp!=null){ 
+            if(temp.data==temp.next.data){
+                temp.next=temp.next.next;
+            }
+            temp=temp.next;
+        }
+    }
+    public static void main(String[] args) { 
+        Singly list1 = new Singly(); 
+        list1.insert_end(1);
+        list1.insert_end(2);
+        list1.insert_end(7);
+        list1.insert_end(7);
+        list1.insert_end(35);
+        list1.insert_end(35);
+        list1.printlist();
+        list1.remove_duplicate();
+        list1.printlist();
+    } 
+} 
