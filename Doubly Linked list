@@ -19,12 +19,12 @@ public class Linkedlist {
             head=NEW;
         }
         else{
-            Node temp=head,prev=head;
+            Node temp=head;
             while (temp.next!=null) {
                 temp=temp.next;
             }
-            temp.prev=prev;
             temp.next=NEW;
+            NEW.prev=temp;
         }
     }
     public void insert_first(int data){
