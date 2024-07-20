@@ -1,0 +1,66 @@
+
+public class Linkedlist {
+    class Node{
+        int data;
+        Node next;
+        Node prev;
+        Node(int d){
+            this.data=d;
+            this.next=null;
+            this.prev=null;
+        }
+    }
+    private Node head; 
+    public Linkedlist() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+            NEW.prev=temp;
+        }
+    }
+
+    public void reverselist(){
+        Node current=head,prev=null,temp=null;
+        while(current!=null){ 
+            temp=current.next;
+            current.next=prev;
+            current.prev=temp;
+
+            prev=current;
+            current=current.prev;
+        }
+        if (prev != null) {
+            head = prev;
+        }
+    
+    }
+    public void printlist(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        Linkedlist list = new Linkedlist();
+        list.insert_end(30);
+        list.insert_end(40);
+        list.insert_end(70);
+        list.insert_end(42);
+        list.insert_end(99);
+        list.printlist();
+        list.reverselist();
+        list.printlist();
+    } 
+}
