@@ -1,0 +1,78 @@
+import java.util.HashMap;
+
+public class Linked { 
+    class Node {
+        int data;
+        Node next;
+        Node(int d) {
+            this.data = d;
+            this.next = null;
+        }}
+    private Node head; 
+    public Linked() {
+        this.head = null;
+    }
+    public void insert_end(int data){
+        Node NEW=new Node(data);
+        if(head==null){
+            head=NEW;
+        }
+        else{
+            Node temp=head;
+            while (temp.next!=null) {
+                temp=temp.next;
+            }
+            temp.next=NEW;
+        }
+    }
+
+    private void Deleteloop() {
+        HashMap<Node,Boolean> mp=new HashMap<Node,Boolean>();
+        Node current = head;
+        while (current != null) {
+            if(!mp.containsKey(current)){
+                mp.put(current, true);
+                current = current.next;
+            }
+            else{
+                current.next=null;
+                return;
+            };
+        }
+        return;
+    }
+    private void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+    private int Startingloop() {
+        HashMap<Node,Boolean> mp=new HashMap<Node,Boolean>();
+        Node current = head;
+        while (current != null) {
+            if(!mp.containsKey(current)){
+                mp.put(current, true);
+                current = current.next;
+            }
+            else return current.data;
+        }
+        return 0;
+    }
+    public static void main(String[] args) {
+        Linked list = new Linked();
+        list.insert_end(10);
+        list.insert_end(5);
+        list.insert_end(4);
+        list.insert_end(20);
+        list.insert_end(67);
+        list.insert_end(68);
+        list.insert_end(68);
+        list.head.next.next.next.next.next.next = list.head.next.next; 
+        int ans=list.Startingloop();
+        System.out.println(ans);
+    }
+} 
+
