@@ -1,0 +1,78 @@
+import java.util.HashMap;
+
+public class Linked { 
+    class Node {
+        int data;
+        Node next;
+        Node(int d) {
+            this.data = d;
+            this.next = null;
+        }}  
+    private Node head; 
+    public Linked() {
+        this.head = null;
+    }
+
+    public void insert_first(int data) {
+        Node newnode = new Node(data);
+        if (head == null) {head = newnode;} 
+        else {
+            newnode.next = head;
+            head = newnode;}} 
+
+    private Boolean Detectloop() {
+        HashMap<Node,Boolean> mp=new HashMap<Node,Boolean>();
+        Node current = head;
+        while (current != null) {
+            if(!mp.containsKey(current)){
+                mp.put(current, true);
+                current = current.next;
+            }
+            else return true;
+        }
+        return false;
+    }
+private void Deleteloop() {
+        HashMap<Node,Boolean> mp=new HashMap<Node,Boolean>();
+        Node current = head;
+        while (current != null) {
+            if(!mp.containsKey(current)){
+                mp.put(current, true);
+                current = current.next;
+            }
+            else{
+                current.next=null;
+                return;
+            };
+        }
+        return;
+    }
+    private void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Linked list = new Linked();
+        list.insert_first(10);
+        list.insert_first(5);
+        list.insert_first(4);
+        list.insert_first(20);
+        list.head.next.next.next.next = list.head.next.next; 
+        Boolean ans2=list.Detectloop();
+        if(ans2){
+            System.out.print("Loop detected.");
+        }
+        else System.out.print("no Loop found.");
+        list.Deleteloop();
+        Boolean ans=list.Detectloop();
+        if(ans){
+            System.out.print("Loop detected.");
+        }
+        else System.out.print("no Loop found.");
+    }
+} 
